@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+
 steps:
 - task: Maven@3
   inputs:
@@ -20,3 +21,10 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+- task: Ant@1
+  inputs:
+    buildFile: 'build.xml'
+    options: 
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
